@@ -8,7 +8,6 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
     const onSubmit = (data) => {
         // Handle form submission here
         console.log(data);
