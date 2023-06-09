@@ -3,14 +3,28 @@ import { useForm } from 'react-hook-form';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import SocialBtn from '../../Components/SocialBtn/SocialBtn';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
+    const { signUpWithEmail } = useContext(AuthContext);
+    const [dismatch, setDismatch] = useState('');
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const onSubmit = (data) => {
-        // Handle form submission here
         console.log(data);
+        const {name, email, password, confirmPassword, photo} = data;
+        if(password !== confirmPassword){
+            return setDismatch("Dismatch password!");
+        }
+        signUpWithEmail(email, password)
+            .then((success) => {
+            console.log(success.user)
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
     };
 
     const togglePasswordVisibility = () => {
@@ -41,7 +55,6 @@ const Login = () => {
                 <form
                     className="space-y-4"
                     onSubmit={handleSubmit(onSubmit)}
-                    autoComplete="off"
                 >
                     <div>
                         <label className="block mb-1">Name*</label>
@@ -97,6 +110,9 @@ const Login = () => {
                                 {showConfirmPassword ? <HiEyeOff /> : <HiEye />}
                             </button>
                         </div>
+                        {dismatch && (
+                            <p className="text-red-500 text-sm mt-1">{dismatch}</p>
+                        )}
                     </div>
 
                     <div>
