@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { signUpWithEmail } = useContext(AuthContext);
+    const { signUpWithEmail, updateUserProfile } = useContext(AuthContext);
     const [dismatch, setDismatch] = useState('');
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -14,17 +14,25 @@ const Login = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const onSubmit = (data) => {
         console.log(data);
-        const {name, email, password, confirmPassword, photo} = data;
-        if(password !== confirmPassword){
+        const { name, email, password, confirmPassword, photo } = data;
+        if (password !== confirmPassword) {
             return setDismatch("Dismatch password!");
         }
         signUpWithEmail(email, password)
             .then((success) => {
-            console.log(success.user)
-        })
-        .catch(error => {
-            console.log(error.message)
-        })
+                console.log(success.user)
+                updateUserProfile(name, photo)
+                    .then(() => {
+                        reset();
+                        console.log("successfull update")
+                    })
+                    .catch(err => {
+                        console.log(err.message);
+                    })
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
     };
 
     const togglePasswordVisibility = () => {
@@ -100,7 +108,7 @@ const Login = () => {
                             <input
                                 className="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:border-blue-500"
                                 type={showConfirmPassword ? 'text' : 'password'}
-                                {...register('confirmPassword', { required: true})}
+                                {...register('confirmPassword', { required: true })}
                             />
                             <button
                                 type="button"
