@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import SocialBtn from '../../Components/SocialBtn/SocialBtn';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
+    const { signInWithEmail } = useContext(AuthContext);
     const { register, handleSubmit} = useForm();
     const [showPassword, setShowPassword] = useState(false);
 
     const onSubmit = (data) => {
-        // Handle form submission here
         console.log(data);
+        const {email, password} = data;
+        signInWithEmail(email, password)
+        .then(res => console.log(res.user))
+        .catch(err => console.log(err.message))
     };
 
     const togglePasswordVisibility = () => {
