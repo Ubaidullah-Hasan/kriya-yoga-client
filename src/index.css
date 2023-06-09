@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.cus-btn{
+    background-color: #7E8446;
+    transition: 0.3s;
+}
+.cus-btn:hover{
+    background-color: #54452F;
+}
