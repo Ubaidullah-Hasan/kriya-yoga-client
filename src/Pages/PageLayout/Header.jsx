@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../../assets/logo.png"
 import { FaFacebook, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import userIcon from "../../assets/userIcon.png"
 
 
 const Header = () => {
     // , ,  and User profile picture.The user profile picture and Dashboard on the navbar are conditional.If the user is signed in, the navbar will show the profile picture; otherwise, it will show the Login button.
 
-    const { user } = useState('');
+    const { user, logOut} = useContext(AuthContext);
+    const userPhoto = user?.photoURL;
+
+    const handleLogOut = () => {
+        logOut()
+        .then(() => console.log("Log Out Successfull!"))
+    }
+
     const menu = <>
         <li className='cursor-pointer'><Link to="/">Home</Link></li>
         <li className='cursor-pointer'><Link to="/instructors">Instructors</Link></li>
         <li className='cursor-pointer'><Link to="/classes">Classes</Link></li>
-        <li className='cursor-pointer'><Link to="/login">Login</Link></li>
-        <li className='cursor-pointer'><Link to="/register">Register</Link></li>
-        {
-            <li className='cursor-pointer'><Link to="/dashboard">Dashboard</Link></li>
+        {user?.email ?
+            <>
+                <li className='cursor-pointer'><Link to="/dashboard">Dashboard</Link></li>
+                <li onClick={handleLogOut} className='cursor-pointer'>Log Out</li>
+                <li><img src={userPhoto ? userPhoto : userIcon} alt="" className='w-7 h-7 rounded-full' /></li>
+            </> :
+            <>
+                <li className='cursor-pointer'><Link to="/login">Login</Link></li>
+                <li className='cursor-pointer'><Link to="/register">Register</Link></li>
+            </>
+
         }
+
     </>
 
     return (

@@ -7,14 +7,16 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
     const { signInWithEmail } = useContext(AuthContext);
-    const { register, handleSubmit} = useForm();
+    const { register, handleSubmit, reset} = useForm();
     const [showPassword, setShowPassword] = useState(false);
 
     const onSubmit = (data) => {
         console.log(data);
         const {email, password} = data;
         signInWithEmail(email, password)
-        .then(res => console.log(res.user))
+        .then(() => {
+            reset();
+        })
         .catch(err => console.log(err.message))
     };
 

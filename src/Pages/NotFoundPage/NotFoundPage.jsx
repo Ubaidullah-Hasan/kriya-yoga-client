@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const NotFoundPage = () => {
     const navigate = useNavigate();
     const handleBack = () => {
-        navigate(-1, {replace: true});
+        navigate('/', {replace: true});
     }
     return (
         <div>
