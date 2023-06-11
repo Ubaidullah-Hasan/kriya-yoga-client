@@ -10,7 +10,6 @@ const Instructors = () => {
     useEffect(() => {
         axios.get('http://localhost:4000/instructors')
             .then(response => {
-                console.log(response.data);
                 setInstructors(response.data);
             })
     }, [])
@@ -25,7 +24,7 @@ const Instructors = () => {
                             <div className=" bg-base-100">
                                 <figure><img src={instructor.image} alt="Shoes" /></figure>
                                 <div className="card-body">
-                                    <div className='flex justify-between items-center'>
+                                    <div className='space-y-4'>
                                         <h2 className="card-title">
                                             {instructor?.name}
                                             <div data-tooltip-content="Total Students" data-tooltip-id="badge" className="badge badge-secondary">{instructor.totalStudents}</div>
