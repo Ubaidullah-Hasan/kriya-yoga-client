@@ -7,7 +7,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const Classes = () => {
     const [classes, setClasses] = useState([]);
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const email = user?.email;
     const navigate = useNavigate();
     const location = useLocation();
     // console.log(user?.email);
@@ -24,6 +25,7 @@ const Classes = () => {
 
     const handleSelect = (item) => {
         console.log(item)
+        const cource = { email, courseId: item?._id, name: item?.name, instructor: item?.instructor, price: item?.price, availableSeats: item?.availableSeats, totalEnroll: item?.studentsCount }
         if (!user?.email) {
             console.log()
             Swal.fire({
@@ -36,9 +38,24 @@ const Classes = () => {
                 confirmButtonText: 'Yes, Login Now!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate("/login", { state: {from:location}})
+                    navigate("/login", { state: { from: location } });
                 }
             })
+        }
+
+        else {
+            axios.post('http://localhost:4000/select-cources', cource)
+                .then(response => {
+                    // Handle success
+                    console.log(response.data);
+                    if (response.data.insertedId){
+                        Swal.fire(
+                            'Good job!',
+                            'You clicked the button!',
+                            'success'
+                        )
+                    }
+                })
         }
     }
 
