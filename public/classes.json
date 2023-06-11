@@ -1,0 +1,74 @@
+[
+    {
+        "_id": "1",
+        "image": "https://i.ibb.co/TcKvkdq/template-co.png",
+        "name": "Introduction to Yoga",
+        "instructor": "John Doe",
+        "availableSeats": 10,
+        "price": 29.99,
+        "studentsCount": 50
+    },
+    {
+        "_id": "2",
+        "image": "https://i.ibb.co/ZzW3Vfr/template-co-3.png",
+        "name": "Vinyasa Flow",
+        "instructor": "Jane Smith",
+        "availableSeats": 5,
+        "price": 39.99,
+        "studentsCount": 30
+    },
+    {
+        "_id": "3",
+        "image": "https://i.ibb.co/s3TqKMv/template-co6.png",
+        "name": "Yoga for Beginners",
+        "instructor": "David Johnson",
+        "availableSeats": 15,
+        "price": 19.99,
+        "studentsCount": 70
+    },
+    {
+        "_id": "4",
+        "image": "https://i.ibb.co/wJ2MWqs/template-co-5.png",
+        "name": "Power Yoga",
+        "instructor": "Sarah Thompson",
+        "availableSeats": 8,
+        "price": 49.99,
+        "studentsCount": 25
+    },
+    {
+        "_id": "5",
+        "image": "https://i.ibb.co/DpJ6wZp/template-co-4.png",
+        "name": "Yin Yoga",
+        "instructor": "Michael Anderson",
+        "availableSeats": 12,
+        "price": 34.99,
+        "studentsCount": 40
+    },
+    {
+        "_id": "6",
+        "image": "https://i.ibb.co/RpQ1M1n/template-co-3.png",
+        "name": "Hatha Yoga",
+        "instructor": "Emily Wilson",
+        "availableSeats": 7,
+        "price": 44.99,
+        "studentsCount": 20
+    },
+    {
+        "_id": "7",
+        "image": "https://i.ibb.co/FqsRGgj/template-co-2.png",
+        "name": "Yoga for Stress Relief",
+        "instructor": "Daniel Lee",
+        "availableSeats": 10,
+        "price": 29.99,
+        "studentsCount": 60
+    },
+    {
+        "_id": "8",
+        "image": "https://i.ibb.co/3BpTtNn/template-co-1.png",
+        "name": "Ashtanga Yoga",
+        "instructor": "Olivia Davis",
+        "availableSeats": 6,
+        "price": 54.99,
+        "studentsCount": 35
+    }
+]

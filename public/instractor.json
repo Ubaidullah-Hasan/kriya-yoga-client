@@ -1,0 +1,98 @@
+[
+    {
+        "_id": "1",
+        "image": "https://i.ibb.co/4dxZY6F/Samantha-Johnson.png",
+        "name": "Samantha Johnson",
+        "email": "samanthajohnson@example.com",
+        "totalStudents": 120,
+        "totalClassesTaken": 10,
+        "classes": [
+            "Introduction to Yoga",
+            "Vinyasa Flow"
+        ]
+    },
+    {
+        "_id": "2",
+        "image": "https://i.ibb.co/z5CXc9y/Christopher-Anderson.png",
+        "name": "Christopher Anderson",
+        "email": "christopheranderson@example.com",
+        "totalStudents": 80,
+        "totalClassesTaken": 8,
+        "classes": [
+            "Yoga for Beginners",
+            "Power Yoga"
+        ]
+    },
+    {
+        "_id": "3",
+        "image": "https://i.ibb.co/pRyzwF6/Emily-Thompson.png",
+        "name": "Emily Thompson",
+        "email": "emilythompson@example.com",
+        "totalStudents": 150,
+        "totalClassesTaken": 12,
+        "classes": [
+            "Yin Yoga",
+            "Hatha Yoga"
+        ]
+    },
+    {
+        "_id": "4",
+        "image": "https://i.ibb.co/dtmyr3c/Michael-Wilson.png",
+        "name": "Michael Wilson",
+        "email": "michaelwilson@example.com",
+        "totalStudents": 90,
+        "totalClassesTaken": 6,
+        "classes": [
+            "Yoga for Stress Relief",
+            "Ashtanga Yoga"
+        ]
+    },
+    {
+        "_id": "5",
+        "image": "https://i.ibb.co/HzrBczt/Olivia-Davis.png",
+        "name": "Olivia Davis",
+        "email": "oliviadavis@example.com",
+        "totalStudents": 110,
+        "totalClassesTaken": 9,
+        "classes": [
+            "Yoga for Beginners",
+            "Power Yoga"
+        ]
+    },
+    {
+        "_id": "6",
+        "image": "https://i.ibb.co/2sJCc1b/Daniel-Smith.png",
+        "name": "Daniel Smith",
+        "email": "danielsmith@example.com",
+        "totalStudents": 70,
+        "totalClassesTaken": 7,
+        "classes": [
+            "Hatha Yoga",
+            "Vinyasa Flow"
+        ]
+    },
+    {
+        "_id": "7",
+        "image": "https://i.ibb.co/QrFcLYg/Sophia-Wilson.png",
+        "name": "Sophia Wilson",
+        "email": "sophiawilson@example.com",
+        "totalStudents": 100,
+        "totalClassesTaken": 10,
+        "classes": [
+            "Yoga for Stress Relief",
+            "Introduction to Yoga"
+        ]
+    },
+    {
+        "_id": "8",
+        "image": "https://i.ibb.co/bXFwm1x/Jacob-Lee.png",
+        "name": "Jacob Lee",
+        "email": "jacoblee@example.com",
+        "totalStudents": 75,
+        "totalClassesTaken": 8,
+        "classes": [
+            "Ashtanga Yoga",
+            "Yin Yoga"
+        ]
+    }
+]
