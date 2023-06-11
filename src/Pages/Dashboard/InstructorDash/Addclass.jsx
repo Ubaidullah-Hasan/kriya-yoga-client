@@ -1,79 +1,113 @@
 import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { useForm } from 'react-hook-form';
 
 const Addclass = () => {
     const { user } = useContext(AuthContext);
+    const token = "13454554"
 
-    const handleAddProduct = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.className.value;
-        const image = form.photo.value;
-        const instructor = form.iName.value;
-        const email = form.email.value;
-        const price = parseInt(form.price.value);
-        const availableSeats = form.sets.value;
 
-        const newClass = { instructor, name, image, email, price, availableSeats}
-        console.log(newClass)
+    const imageHostingToken = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
+    const hostingURL = `https://api.imgbb.com/1/upload?key=${imageHostingToken}`
 
-        // fetch("http://localhost:4000/classes", {
-        //     method: "POST",
-        //     headers: {
-        //         "content-type": "application/json"
-        //     },
-        //     body: JSON.stringify(newClass)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data)
-        //         if (data.insertedId) {
-        //             Swal.fire(
-        //                 'Good job!',
-        //                 'You added a class!',
-        //                 'success'
-        //             )
-        //         }
-        //     })
+    const { register, handleSubmit, reset } = useForm();
+    const onSubmit = data => {
+        const formData = new FormData();
+        formData.append("image", data.image[0]);
+        fetch(hostingURL, {
+            method: "POST",
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                console.log(imgResponse)
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url;
+                    const { name, email, instructor, price, availableSeats } = data;
+                    const newItem = { name, price: parseFloat(price), email, instructor, image: imgURL, availableSeats };
+                    console.log(newItem)
+                    console.log(data)
 
-    }
+                    fetch("http://localhost:4000/classes", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            autorization: `Bearer ${token}`
+                        },
+                        body: JSON.stringify(newItem)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.insertedId) {
+                                reset();
+                                Swal.fire(
+                                    'Item add Successfully',
+                                    'success'
+                                )
+                            }
+                        })
+                }
+            })
+    };
+
     return (
-        <div className='w-[90%] mx-auto'>
-            <form onSubmit={handleAddProduct} className=" bg-base-200 px-[97px] py-[60px] rounded-md space-y-6 my-[90px]">
-                <h1 className='mb-12 font-bold text-5xl text-slate-800 text-center '>Add Class!</h1>                
-                {/* row 2 */}
-                <div className='flex justify-between gap-6'>
-                    <div className="form-control w-full">
-                        <input type="text" placeholder="Class Name" name='className' className="input focus:outline-none" />
-                    </div>
-                    <div className="form-control w-full">
-                        <input type="file" name='photo' className="" />
-                    </div>
-                </div>
-                {/* row 1 */}
-                <div className='flex justify-between gap-6'>
-                    <div className="form-control w-full">
-                        <input type="text" placeholder="Instructor Name" name="iName" readOnly defaultValue={user?.displayName} className="input focus:outline-none" />
-                    </div>
-                    <div className="form-control w-full">
-                        <input type="email" name='email' defaultValue={user.email} readOnly placeholder="Your Email" className="input focus:outline-none" />
-                    </div>
-                </div>
-                {/* row 3 */}
-                <div className='flex justify-between gap-6'>
-                    <div className="form-control w-full">
-                        <input type="text" name='price' placeholder="Price" className="input focus:outline-none" />
-                    </div>
-                    <div className="form-control w-full">
-                        <input type="text" name='sets' placeholder="Available Seats" className="input focus:outline-none" />
-                    </div>
-                </div>
 
-                <div className="form-control mt-6">
-                    <button className="btn bg-green-500 hover:bg-green-600 border-none" >Add</button>
-                </div>
-            </form>
+        <div className="w-[90%] mx-auto bg-[#F3F3F3] p-[50px] ">
+            <div className=" mx-auto w-full   rounded-none">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    
+                    <div className='grid grid-cols-2 gap-4'>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Class name*</span>
+                            </label>
+                            <input type="text" {...register("name", { required: true, maxLength: 180 })} placeholder="Class name" className="input rounded-none py-6 px-8 border-none focus:outline-none" />
+                        </div>
+                        <div className='form-control'>
+                            <label className="label">
+                                <span className="label-text">Class Image*</span>
+                            </label>
+                            <input type="file" {...register("image", { required: true })} className="file-input w-full max-w-xs " />
+                        </div>
+                    </div>
+
+                    <div className='grid grid-cols-2 gap-4'>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Instructor*</span>
+                            </label>
+                            <input type="text" {...register("instructor", { required: true, maxLength: 180 })} defaultValue={user?.displayName} readOnly placeholder="Instructor name" className="input rounded-none py-6 px-8 border-none focus:outline-none" />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Price*</span>
+                            </label>
+                            <input {...register("price", { required: true })} type="text" placeholder="Price" className="input rounded-none py-6 px-8 border-none focus:outline-none" />
+                        </div>
+                    </div>
+
+                    <div className='grid grid-cols-2 gap-4'>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email*</span>
+                            </label>
+                            <input type="text" {...register("email", { required: true, maxLength: 180 })} defaultValue={user?.email} readOnly  placeholder="Class name" className="input rounded-none py-6 px-8 border-none focus:outline-none" />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">AvailableSeats*</span>
+                            </label>
+                            <input {...register("availableSeats", { required: true })} type="number" placeholder="AvailableSeats" className="input rounded-none py-6 px-8 border-none focus:outline-none" />
+                        </div>
+                    </div>
+
+                    <div className="mt-6">
+                        <button className='capitalize btn bg-green-500 hover:bg-green-600 rounded-none border-none' type="submit"> Add Item </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

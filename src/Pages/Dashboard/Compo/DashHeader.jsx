@@ -9,7 +9,7 @@ const DashHeader = () => {
     const userEmail = user?.email;
     const [users] = useUser();
     const person = users.find(user => user.email === userEmail)
-    console.log(person)
+    // console.log(person)
 
     const menu = <>
         <li><Link to="/">Home</Link></li>
