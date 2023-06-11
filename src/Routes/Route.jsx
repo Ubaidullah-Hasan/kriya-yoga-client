@@ -10,6 +10,7 @@ import Home from '../Pages/Home/Home/Home';
 import Instructors from '../Pages/Instructors/Instructors/Instructors';
 import Classes from '../Pages/Classes/Classes';
 import PrivateRoute from './PrivateRoute';
+import Dashboard from '../Layout/Dashboard';
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         path: '*',
         element: <NotFoundPage></NotFoundPage>
     },
+    {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>
+    }
 ]);
 
 export default router;

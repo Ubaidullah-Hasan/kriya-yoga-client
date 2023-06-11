@@ -11,7 +11,7 @@ const Instructor = () => {
             return res.json()
         }
     })
-    console.log(instructors)
+    // console.log(instructors)
 
     return (
         <div className='bg-[#F5F0E2] py-10 md:py-24'>

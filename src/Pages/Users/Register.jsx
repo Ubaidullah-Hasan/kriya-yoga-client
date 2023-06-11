@@ -2,10 +2,11 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import SocialBtn from '../../Components/SocialBtn/SocialBtn';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
+    const navigate = useNavigate();
     const { signUpWithEmail, updateUserProfile } = useContext(AuthContext);
     const [dismatch, setDismatch] = useState('');
 
@@ -25,6 +26,7 @@ const Login = () => {
                     .then(() => {
                         reset();
                         console.log("successfull update")
+                        navigate("/");
                     })
                     .catch(err => {
                         console.log(err.message);

@@ -13,7 +13,7 @@ const Instructors = () => {
                 setInstructors(response.data);
             })
     }, [])
-    console.log(instructors)
+    // console.log(instructors)
 
     return (
         <>
