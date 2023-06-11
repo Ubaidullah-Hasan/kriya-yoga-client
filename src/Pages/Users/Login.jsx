@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import SocialBtn from '../../Components/SocialBtn/SocialBtn';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
@@ -10,12 +10,18 @@ const Login = () => {
     const { register, handleSubmit, reset} = useForm();
     const [showPassword, setShowPassword] = useState(false);
 
+    // login path
+    const location = useLocation(); 
+    const path = location?.state?.from?.pathname || '/'; console.log(path)
+    const navigate = useNavigate();
+
     const onSubmit = (data) => {
         console.log(data);
         const {email, password} = data;
         signInWithEmail(email, password)
         .then(() => {
             reset();
+            navigate(path)
         })
         .catch(err => console.log(err.message))
     };

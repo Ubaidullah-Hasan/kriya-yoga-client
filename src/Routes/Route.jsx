@@ -9,6 +9,7 @@ import Login from '../Pages/Users/Login';
 import Home from '../Pages/Home/Home/Home';
 import Instructors from '../Pages/Instructors/Instructors/Instructors';
 import Classes from '../Pages/Classes/Classes';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
     {
