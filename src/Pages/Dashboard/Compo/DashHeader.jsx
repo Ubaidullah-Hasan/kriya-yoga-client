@@ -16,22 +16,22 @@ const DashHeader = () => {
         {
             person?.rule === '' &&
             <>
-                <li><Link to="mychoice">My Choice</Link></li>
-                <li><Link to="/class">Class</Link></li>
+                <li><Link to="/dashboard/mychoice">My Choice</Link></li>
+                <li><Link to="/dashboard/class">Class</Link></li>
             </>
         }
         {
             person?.rule === 'admin' &&
             <>
-                <li><Link to="manage-class">Manage Classes</Link></li>
-                <li><Link to="/manage-user">Manage Users</Link></li>
+                <li><Link to="/dashboard/manage-class">Manage Classes</Link></li>
+                <li><Link to="/dashboard/manage-user">Manage Users</Link></li>
             </>
         }
         {
             person?.rule === 'instructor' &&
             <>
-                <li><Link to="addclass">Add Class</Link></li>
-                <li><Link to="/instructorclass">My Class</Link></li>
+                <li><Link to="/dashboard/addclass">Add Class</Link></li>
+                <li><Link to="/dashboard/instructorclass">My Class</Link></li>
             </>
         }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StudentDash = () => {
+const Instructorclass = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const StudentDash = () => {
     );
 };
 
-export default StudentDash;
+export default Instructorclass;
