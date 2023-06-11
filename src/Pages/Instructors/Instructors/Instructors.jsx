@@ -25,16 +25,18 @@ const Instructors = () => {
                             <div className=" bg-base-100">
                                 <figure><img src={instructor.image} alt="Shoes" /></figure>
                                 <div className="card-body">
-                                    <h2 className="card-title">
-                                        {instructor?.name}
-                                        <div data-tooltip-content="Total Students" data-tooltip-id="badge" className="badge badge-secondary">{instructor.totalStudents}</div>
-                                        <Tooltip id="badge" />
-                                    </h2>
-                                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                                    <div className="card-actions justify-end">
-                                        <div className="badge badge-outline">Fashion</div>
-                                        <div className="badge badge-outline">Products</div>
-                                        
+                                    <div className='flex justify-between items-center'>
+                                        <h2 className="card-title">
+                                            {instructor?.name}
+                                            <div data-tooltip-content="Total Students" data-tooltip-id="badge" className="badge badge-secondary">{instructor.totalStudents}</div>
+                                            <Tooltip id="badge" />
+                                        </h2>
+                                        <div className="card-actions justify-start">
+                                            <div className="badge badge-outline">Total Class: {instructor.totalClassesTaken}</div>
+                                        </div>
+                                    </div>
+                                    <div className="card-actions justify-start">
+                                        <div className="badge badge-outline bg-[#F1E8D1]">Email: {instructor.email}</div>
                                     </div>
                                 </div>
                             </div>
