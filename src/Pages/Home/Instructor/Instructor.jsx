@@ -7,7 +7,7 @@ const Instructor = () => {
     const {data: instructors = []} = useQuery({
         queryKey: ['instructors'],
         queryFn: async () => {
-            const res = await fetch("http://localhost:4000/instructors")
+            const res = await fetch("http://localhost:4000/instructors-img")
             return res.json()
         }
     })

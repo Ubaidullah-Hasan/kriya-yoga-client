@@ -7,6 +7,7 @@ import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
 import Register from '../Pages/Users/Register';
 import Login from '../Pages/Users/Login';
 import Home from '../Pages/Home/Home/Home';
+import Instructors from '../Pages/Instructors/Instructors/Instructors';
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: "login",
                 element: <Login></Login>
+            },
+            {
+                path: "instructors",
+                element: <Instructors></Instructors>
             }
         ]
     },
