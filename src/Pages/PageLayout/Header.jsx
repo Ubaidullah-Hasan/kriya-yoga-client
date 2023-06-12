@@ -4,18 +4,20 @@ import logo from "../../assets/logo.png"
 import { FaFacebook, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import userIcon from "../../assets/userIcon.png"
-import useUser from '../../Hook/useUser';
+import { FiMenu } from "react-icons/fi";
+
 
 
 const Header = () => {
-    // , ,  and User profile picture.The user profile picture and Dashboard on the navbar are conditional.If the user is signed in, the navbar will show the profile picture; otherwise, it will show the Login button.
+    const [navMenu, serNavMenu] = useState(false)
+    console.log(navMenu)
 
-    const { user, logOut} = useContext(AuthContext);
-    const userPhoto = user?.photoURL; 
+    const { user, logOut } = useContext(AuthContext);
+    const userPhoto = user?.photoURL;
 
     const handleLogOut = () => {
         logOut()
-        .then(() => console.log("Log Out Successfull!"))
+            .then(() => console.log("Log Out Successfull!"))
     }
 
     const menu = <>
@@ -38,30 +40,54 @@ const Header = () => {
     </>
 
     return (
-        <header className='bg-[#7E8446]'>
-            <div className="container w-[90%] h-[90px] mx-auto flex justify-between items-center" >
-                <div className='w-[70px]'>
-                    <img src={logo} alt="logo" />
+        <>
+            {/* for mobile */}
+            <header className='md:hidden h-[70px] bg-[#7E8446]'>
+                <div className='flex justify-between items-center px-8 py-2'>
+                    <div className='w-[60px]'>
+                        <img src={logo} alt="logo" />
+                    </div>
+                    <div className=''>
+                        <FiMenu onClick={()=>serNavMenu(!navMenu)} className='w-8 h-8'/>
+                    </div>
                 </div>
-                <nav>
-                    <ul className="flex space-x-4 text-white">
+                <div className={`relative duration-500 bg-white px-11 py-4 z-20 ${navMenu ? 'block' : "hidden"}`}>
+                    <ul >
                         {menu}
                     </ul>
-                </nav>
-
-                <div className="flex space-x-4">
-                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                        <FaFacebook className="text-white text-xl" />
-                    </a>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                        <FaTwitter className="text-white text-xl" />
-                    </a>
-                    <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer">
-                        <FaWhatsapp className="text-white text-xl" />
-                    </a>
                 </div>
-            </div>
-        </header>
+            </header>
+
+
+
+
+
+            {/* for pc */}
+            <header className='bg-[#7E8446] hidden md:block'>
+                <div className="container w-[90%] h-[90px] mx-auto flex justify-between items-center" >
+                    <div className='w-[70px]'>
+                        <img src={logo} alt="logo" />
+                    </div>
+                    <nav>
+                        <ul className="flex space-x-4 text-white">
+                            {menu}
+                        </ul>
+                    </nav>
+
+                    <div className="flex space-x-4">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                            <FaFacebook className="text-white text-xl" />
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                            <FaTwitter className="text-white text-xl" />
+                        </a>
+                        <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer">
+                            <FaWhatsapp className="text-white text-xl" />
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </>
     );
 };
 
