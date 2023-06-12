@@ -17,7 +17,7 @@ const DashHeader = () => {
             person?.rule === 'student' &&
             <>
                 <li><Link to="/dashboard/mychoice">My Choice</Link></li>
-                <li><Link to="/dashboard/class">Class</Link></li>
+                <li><Link to="/dashboard/selected-classes">Selected Classes</Link></li>
             </>
         }
         {

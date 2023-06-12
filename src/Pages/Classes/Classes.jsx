@@ -7,13 +7,16 @@ import useUser from '../../Hook/useUser';
 
 
 const Classes = () => {
+
+    const token = localStorage.getItem("access-token");
+
     const [classes, setClasses] = useState([]);
     // const { user } = useContext(AuthContext);
     // const email = user?.email; console.log(email)
     // console.log(user?.email);
     const navigate = useNavigate();
     const location = useLocation();
-    const [, , ,currentUser] = useUser();console.log(currentUser?.email)
+    const [, , , currentUser] = useUser(); console.log(currentUser?.email)
     const email = currentUser?.email;
     useEffect(() => {
         axios.get('http://localhost:4000/classes')
@@ -46,11 +49,16 @@ const Classes = () => {
         }
 
         else {
-            axios.post('http://localhost:4000/select-cources', cource)
+            axios.post('http://localhost:4000/select-cources', cource, {
+                headers: {
+                    autorization: `Bearer ${token}`,
+                }
+            }
+            )
                 .then(response => {
                     // Handle success
                     console.log(response.data);
-                    if (response.data.insertedId){
+                    if (response.data.insertedId) {
                         Swal.fire(
                             'Good job!',
                             'You clicked the button!',
@@ -68,7 +76,7 @@ const Classes = () => {
                     classes.map(classItem => <div key={classItem._id}>
                         <div className=" bg-base-100">
                             <figure className='relative'>
-                                <img src={classItem.image} alt="Shoes" className='h-[220px] w-full'/>
+                                <img src={classItem.image} alt="Shoes" className='h-[220px] w-full' />
                                 <span className='absolute top-4 right-5 hover:bg-[#ee4d34] bg-[#7E8446] px-6 py-1 text-white rounded-full'>${classItem.price}</span>
                             </figure>
                             <div className={`card-body ${classItem.availableSeats === 0 ? 'bg-rose-300' : 'bg-white'}`}>

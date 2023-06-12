@@ -7,7 +7,6 @@ import useUser from '../Hook/useUser';
 const StudentRoute = ({children}) => {
     const { user, loading } = useContext(AuthContext);
     const [, refetch, isLoading, currentUser] = useUser();
-    console.log(currentUser?.rule)
 
     
     if (loading || isLoading) {

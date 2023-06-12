@@ -12,7 +12,6 @@ import Classes from '../Pages/Classes/Classes';
 import PrivateRoute from './PrivateRoute';
 import Dashboard from '../Layout/Dashboard';
 import MyChoice from '../Pages/Dashboard/StudentDash/MyChoice';
-import Class from '../Pages/Dashboard/StudentDash/Class';
 import Manageclass from '../Pages/Dashboard/AdminDash/Manageclass';
 import Manageuser from '../Pages/Dashboard/AdminDash/Manageuser';
 import Instructorclass from '../Pages/Dashboard/InstructorDash/Instructorclass';
@@ -20,6 +19,7 @@ import Addclass from '../Pages/Dashboard/InstructorDash/Addclass';
 import AdminRoute from './AdminRoute';
 import StudentRoute from './StudentRoute';
 import InstructorRoute from './InstructorRoute';
+import SelectedClass from '../Pages/Dashboard/StudentDash/SelectedClass';
 
 const router = createBrowserRouter([
     {
@@ -62,8 +62,8 @@ const router = createBrowserRouter([
                 element: <StudentRoute><MyChoice></MyChoice></StudentRoute>
             },
             {
-                path: "class",
-                element: <StudentRoute><Class></Class></StudentRoute>
+                path: "selected-classes",
+                element: <StudentRoute><SelectedClass></SelectedClass></StudentRoute>
             },
             // admin route
             {
