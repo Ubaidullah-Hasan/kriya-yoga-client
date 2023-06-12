@@ -68,7 +68,7 @@ const Classes = () => {
                     classes.map(classItem => <div key={classItem._id}>
                         <div className=" bg-base-100">
                             <figure className='relative'>
-                                <img src={classItem.image} alt="Shoes" />
+                                <img src={classItem.image} alt="Shoes" className='h-[220px] w-full'/>
                                 <span className='absolute top-4 right-5 hover:bg-[#ee4d34] bg-[#7E8446] px-6 py-1 text-white rounded-full'>${classItem.price}</span>
                             </figure>
                             <div className={`card-body ${classItem.availableSeats === 0 ? 'bg-rose-300' : 'bg-white'}`}>
