@@ -25,6 +25,8 @@ const useClasses = () => {
     const totalPrice = parseFloat(longPrice.toFixed(2));
     // price fucntionality
 
+    console.log(currentUser.email)
+    console.log(classes)
     return [classes, refetch, totalPrice];
 };
 

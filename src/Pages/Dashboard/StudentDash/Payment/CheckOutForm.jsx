@@ -12,24 +12,24 @@ const CheckOutForm = ({ classes, totalPrice }) => {
     const [transitionId, setTransitionId] = useState('');
     const [processing, setProcessing] = useState(false);
     const token = localStorage.getItem("access-token")
-    console.log(totalPrice, classes)
+    // console.log("classes", classes)
 
 
     const stripe = useStripe();
     const elements = useElements();
 
     useEffect(() => {
-        console.log(totalPrice)
+        // console.log(totalPrice)
         if (!totalPrice) {
             return
         }
         axios.post("http://localhost:4000/create-payment-intent", { totalPrice }, {
-            // headers: {
-            //     autorization: `Bearer ${ token }`,
-            // }
+            headers: {
+                autorization: `Bearer ${ token }`,
+            }
         })
             .then(res => {
-                console.log(res.data.clientSecret)
+                // console.log(res.data.clientSecret)
                 setClientSecret(res.data.clientSecret);
             })
     }, [totalPrice])
@@ -42,7 +42,7 @@ const CheckOutForm = ({ classes, totalPrice }) => {
         }
 
         const card = elements.getElement(CardElement);
-        console.log(card)
+        // console.log(card)
 
         if (card === null) {
             return;
@@ -108,12 +108,48 @@ const CheckOutForm = ({ classes, totalPrice }) => {
                     'autorization': `Bearer ${token}`
                 }
             })
+                // .then(res => {
+                //     console.log(res.data);
+                //     if (res.data.result.insertedId) {
+                //         console.log("payment document insert the db")
+                //         classes.map(item => console.log(item.studentsCount, item.studentsCount + 1))
+                //         fetch("http://localhost:4000/classes",{
+                //             method: "PUT",
+                //             headers: {
+                //                 "content-type" : "application/json"
+                //             },
+                //             body: JSON.stringify(classes.forEach(item => item+1))
+                //         })
+                //         .then(res=> res.json())
+                //         .then(data => {
+                //             console.log(data)
+                //         })
+                //     }
+                // })
                 .then(res => {
                     console.log(res.data);
                     if (res.data.result.insertedId) {
-                        console.log("payment document insert the db")
+                        console.log("payment document inserted into the database");
+
+                        const updatedClasses = classes.map(item => ({ ...item, studentsCount: parseInt(item.studentsCount) + 1 }));
+
+                        fetch("http://localhost:4000/classes", {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(updatedClasses)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
                     }
-                })
+                });
+
         }
     };
 

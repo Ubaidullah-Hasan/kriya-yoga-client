@@ -18,6 +18,8 @@ const DashHeader = () => {
             <>
                 <li><Link to="/dashboard/my-classes">My Classes</Link></li>
                 <li><Link to="/dashboard/selected-classes">Selected Classes</Link></li>
+                <li><Link to="/dashboard/payment-history">Payment History</Link></li>
+
             </>
         }
         {

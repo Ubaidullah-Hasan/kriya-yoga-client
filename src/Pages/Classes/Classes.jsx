@@ -11,9 +11,6 @@ const Classes = () => {
     const token = localStorage.getItem("access-token");
 
     const [classes, setClasses] = useState([]);
-    // const { user } = useContext(AuthContext);
-    // const email = user?.email; console.log(email)
-    // console.log(user?.email);
     const navigate = useNavigate();
     const location = useLocation();
     const [, , , currentUser] = useUser(); console.log(currentUser?.email)
@@ -29,7 +26,7 @@ const Classes = () => {
 
 
     const handleSelect = (item) => {
-        const cource = { email, courseId: item?._id, name: item?.name, instructor: item?.instructor, price: item?.price, availableSeats: item?.availableSeats, totalEnroll: item?.studentsCount, image: item.image };
+        const cource = { email, courseId: item?._id, name: item?.name, instructor: item?.instructor, price: item?.price, availableSeats: item?.availableSeats, totalEnroll: item?.studentsCount, image: item.image, studentsCount: item?.studentsCount};
         
         if (!email) {
             console.log()

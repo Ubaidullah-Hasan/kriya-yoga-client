@@ -21,6 +21,7 @@ import InstructorRoute from './InstructorRoute';
 import SelectedClass from '../Pages/Dashboard/StudentDash/SelectedClass';
 import MyClasses from '../Pages/Dashboard/StudentDash/MyClasses';
 import Payment from '../Pages/Dashboard/StudentDash/Payment/Payment';
+import PaymentHistory from '../Pages/Dashboard/StudentDash/PaymentHistory';
 
 const router = createBrowserRouter([
     {
@@ -66,6 +67,14 @@ const router = createBrowserRouter([
                 path: "selected-classes",
                 element: <StudentRoute><SelectedClass></SelectedClass></StudentRoute>
             },
+            {
+                path: "payment",
+                element: <StudentRoute><Payment></Payment></StudentRoute>
+            },
+            {
+                path: "payment-history",
+                element: <StudentRoute><PaymentHistory></PaymentHistory></StudentRoute>
+            },
 
 
             // admin route
@@ -76,10 +85,6 @@ const router = createBrowserRouter([
             {
                 path: "manage-user",
                 element: <AdminRoute><Manageuser></Manageuser></AdminRoute>
-            },
-            {
-                path: "payment",
-                element: <Payment></Payment>
             },
 
             // instructor route

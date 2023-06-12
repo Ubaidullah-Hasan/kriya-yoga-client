@@ -25,7 +25,7 @@ const Addclass = () => {
                 if (imgResponse.success) {
                     const imgURL = imgResponse.data.display_url;
                     const { name, email, instructor, price, availableSeats } = data;
-                    const newItem = { name, price: parseFloat(price), email, instructor, image: imgURL, availableSeats: parseInt(availableSeats)};
+                    const newItem = { name, price: parseFloat(price), email, instructor, image: imgURL, availableSeats: parseInt(availableSeats), status: "pending", studentsCount: 0};
                     console.log(newItem)
                     console.log(data)
 
@@ -54,7 +54,7 @@ const Addclass = () => {
 
     return (
 
-        <div className="w-[90%] mx-auto bg-[#F3F3F3] p-[50px] ">
+        <div className="w-[90%] mx-auto md:mt-20 bg-[#F3F3F3] p-[50px] ">
             <div className=" mx-auto w-full   rounded-none">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     
@@ -104,7 +104,7 @@ const Addclass = () => {
                     </div>
 
                     <div className="mt-6">
-                        <button className='capitalize btn bg-green-500 hover:bg-green-600 rounded-none border-none' type="submit"> Add Item </button>
+                        <button className='capitalize btn bg-green-500 hover:bg-green-600 rounded-none border-none' type="submit"> Add new class </button>
                     </div>
                 </form>
             </div>

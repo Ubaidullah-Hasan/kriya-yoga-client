@@ -27,7 +27,7 @@ const SelectedClass = () => {
             <div className="overflow-x-auto">
                 <div className='flex items-center justify-evenly my-14'>
                     <h1 className='text-4xl uppercase'>Total Amount: <span className='text-orange-500'>${totalPrice}</span></h1>
-                    <Link to="/dashboard/payment"><button className='btn btn-primary px-10 font-bold'>PAY</button></Link>
+                    <Link to="/dashboard/payment"><button disabled={totalPrice === 0} className='btn btn-primary px-10 font-bold'>PAY</button></Link>
                 </div>
                 <table className="table">
                     {/* head */}

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { BallTriangle } from 'react-loader-spinner';
 import { AuthContext } from '../AuthProvider/AuthProvider';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import useUser from '../Hook/useUser';
 
 
