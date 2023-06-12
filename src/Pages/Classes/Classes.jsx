@@ -29,8 +29,8 @@ const Classes = () => {
 
 
     const handleSelect = (item) => {
-        console.log(item)
-        const cource = { email, courseId: item?._id, name: item?.name, instructor: item?.instructor, price: item?.price, availableSeats: item?.availableSeats, totalEnroll: item?.studentsCount }
+        const cource = { email, courseId: item?._id, name: item?.name, instructor: item?.instructor, price: item?.price, availableSeats: item?.availableSeats, totalEnroll: item?.studentsCount, image: item.image };
+        
         if (!email) {
             console.log()
             Swal.fire({
