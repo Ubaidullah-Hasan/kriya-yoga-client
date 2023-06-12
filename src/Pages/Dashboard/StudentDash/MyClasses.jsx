@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyChoice = () => {
+const MyClasses = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const MyChoice = () => {
     );
 };
 
-export default MyChoice;
+export default MyClasses;

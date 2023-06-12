@@ -1,25 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import useUser from '../../../Hook/useUser';
-import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import useClasses from '../../../Hook/useClasses';
 
 const SelectedClass = () => {
-    const [, , , currentUser] = useUser()
-    // console.log(currentUser?.email)
-    const token = localStorage.getItem("access-token");
-    
 
-    const { data: classes = [], refetch } = useQuery({
-        queryKey: ['classes', currentUser?.email],
-        queryFn: async () => {
-            const response = await fetch(`http://localhost:4000/select-cources/${currentUser?.email}`, {
-                headers: {
-                    autorization: `bearer ${token}`
-                }
-            })
-            return response.json()
-        }
-    });
-    // console.log(classes)
+    const [classes, refetch, totalPrice] =useClasses();
 
 
     const handleDelete = (id) => {
@@ -41,8 +26,8 @@ const SelectedClass = () => {
         <div className='w-[90%] mx-auto'>
             <div className="overflow-x-auto">
                 <div className='flex items-center justify-evenly my-14'>
-                    <h1 className='text-4xl uppercase'>Total Amount: ${"45"}</h1>
-                    <button className='btn bg-orange-500 px-10 font-bold'>PAY</button>
+                    <h1 className='text-4xl uppercase'>Total Amount: <span className='text-orange-500'>${totalPrice}</span></h1>
+                    <Link to="/dashboard/payment"><button className='btn btn-primary px-10 font-bold'>PAY</button></Link>
                 </div>
                 <table className="table">
                     {/* head */}

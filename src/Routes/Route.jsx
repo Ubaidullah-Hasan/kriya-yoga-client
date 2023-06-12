@@ -11,7 +11,6 @@ import Instructors from '../Pages/Instructors/Instructors/Instructors';
 import Classes from '../Pages/Classes/Classes';
 import PrivateRoute from './PrivateRoute';
 import Dashboard from '../Layout/Dashboard';
-import MyChoice from '../Pages/Dashboard/StudentDash/MyChoice';
 import Manageclass from '../Pages/Dashboard/AdminDash/Manageclass';
 import Manageuser from '../Pages/Dashboard/AdminDash/Manageuser';
 import Instructorclass from '../Pages/Dashboard/InstructorDash/Instructorclass';
@@ -20,12 +19,14 @@ import AdminRoute from './AdminRoute';
 import StudentRoute from './StudentRoute';
 import InstructorRoute from './InstructorRoute';
 import SelectedClass from '../Pages/Dashboard/StudentDash/SelectedClass';
+import MyClasses from '../Pages/Dashboard/StudentDash/MyClasses';
+import Payment from '../Pages/Dashboard/StudentDash/Payment/Payment';
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
-        children:[
+        children: [
             {
                 path: "/",
                 element: <Home></Home>
@@ -53,18 +54,20 @@ const router = createBrowserRouter([
         element: <NotFoundPage></NotFoundPage>
     },
     {
-        path: "/dashboard",
+        path: "dashboard",
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             // student route
             {
-                path: "mychoice",
-                element: <StudentRoute><MyChoice></MyChoice></StudentRoute>
+                path: "my-classes",
+                element: <StudentRoute><MyClasses></MyClasses></StudentRoute>
             },
             {
                 path: "selected-classes",
                 element: <StudentRoute><SelectedClass></SelectedClass></StudentRoute>
             },
+
+
             // admin route
             {
                 path: "manage-class",
@@ -74,6 +77,11 @@ const router = createBrowserRouter([
                 path: "manage-user",
                 element: <AdminRoute><Manageuser></Manageuser></AdminRoute>
             },
+            {
+                path: "payment",
+                element: <Payment></Payment>
+            },
+
             // instructor route
             {
                 path: "addclass",
