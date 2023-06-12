@@ -3,16 +3,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
 import { useLocation, useNavigate } from 'react-router-dom';
+import useUser from '../../Hook/useUser';
 
 
 const Classes = () => {
     const [classes, setClasses] = useState([]);
-    const { user } = useContext(AuthContext);
-    const email = user?.email;
+    // const { user } = useContext(AuthContext);
+    // const email = user?.email; console.log(email)
+    // console.log(user?.email);
     const navigate = useNavigate();
     const location = useLocation();
-    // console.log(user?.email);
-
+    const [, , ,currentUser] = useUser();console.log(currentUser?.email)
+    const email = currentUser?.email;
     useEffect(() => {
         axios.get('http://localhost:4000/classes')
             .then(response => {
@@ -26,7 +28,7 @@ const Classes = () => {
     const handleSelect = (item) => {
         console.log(item)
         const cource = { email, courseId: item?._id, name: item?.name, instructor: item?.instructor, price: item?.price, availableSeats: item?.availableSeats, totalEnroll: item?.studentsCount }
-        if (!user?.email) {
+        if (!email) {
             console.log()
             Swal.fire({
                 title: 'Login Now!',
@@ -77,7 +79,7 @@ const Classes = () => {
                                     <div className="badge badge-outline ">Instructor: {classItem.instructor}</div>
                                     <div className="badge badge-outline bg-rose-500 text-white">Seats: {classItem.availableSeats}</div>
                                 </div>
-                                <button onClick={() => handleSelect(classItem)} disabled={classItem.availableSeats === 0 || classItem?.rule === "admin" || classItem?.rule === "instructor"} className='mt-4 btn hover:bg-[#ee4d34] bg-[#7E8446] text-white'>Select</button> {/* todo: instructor, admin hole button disabled hobe */}
+                                <button onClick={() => handleSelect(classItem)} disabled={classItem.availableSeats === 0 || currentUser?.rule === "admin" || currentUser?.rule === "instructor"} className='mt-4 btn hover:bg-[#ee4d34] bg-[#7E8446] text-white'>Select</button> {/* todo: instructor, admin hole button disabled hobe */}
                             </div>
                         </div>
                     </div>)

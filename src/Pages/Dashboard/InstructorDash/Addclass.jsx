@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 const Addclass = () => {
     const { user } = useContext(AuthContext);
-    const token = "13454554"
+    const token = localStorage.getItem("access-token");
 
 
     const imageHostingToken = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
@@ -25,7 +25,7 @@ const Addclass = () => {
                 if (imgResponse.success) {
                     const imgURL = imgResponse.data.display_url;
                     const { name, email, instructor, price, availableSeats } = data;
-                    const newItem = { name, price: parseFloat(price), email, instructor, image: imgURL, availableSeats };
+                    const newItem = { name, price: parseFloat(price), email, instructor, image: imgURL, availableSeats: parseInt(availableSeats)};
                     console.log(newItem)
                     console.log(data)
 

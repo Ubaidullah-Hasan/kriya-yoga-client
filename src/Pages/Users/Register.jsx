@@ -5,7 +5,7 @@ import SocialBtn from '../../Components/SocialBtn/SocialBtn';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
-const Login = () => {
+const Register = () => {
     const navigate = useNavigate();
     const { signUpWithEmail, updateUserProfile } = useContext(AuthContext);
     const [dismatch, setDismatch] = useState('');
@@ -24,9 +24,27 @@ const Login = () => {
                 console.log(success.user)
                 updateUserProfile(name, photo)
                     .then(() => {
-                        reset();
-                        console.log("successfull update")
-                        navigate("/");
+                        const saveUser = {
+                            name: name,
+                            image: photo,
+                            email: email,
+                            rule: "student"
+                        }
+                        fetch("http://localhost:4000/users", {
+                            method: 'POST',
+                            headers: {
+                                "content-type":"application/json"
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if(data.insertedId){
+                                reset();
+                                console.log("successfull update")
+                                navigate("/");
+                            }
+                        })
                     })
                     .catch(err => {
                         console.log(err.message);
@@ -149,4 +167,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;

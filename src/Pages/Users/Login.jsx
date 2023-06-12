@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import SocialBtn from '../../Components/SocialBtn/SocialBtn';
-import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
 
     // login path
     const location = useLocation(); 
-    const path = location?.state?.from?.pathname || '/'; console.log(path)
+    const path = location?.state?.from?.pathname || '/'; 
     const navigate = useNavigate();
 
     const onSubmit = (data) => {

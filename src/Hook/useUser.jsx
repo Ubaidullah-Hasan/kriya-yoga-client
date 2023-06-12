@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const useUser = () => {
+    const {user} = useContext(AuthContext);
     const {data: users = [], refetch, isLoading} = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -9,7 +11,9 @@ const useUser = () => {
             return res.json()
         }
     })
-    return [users, refetch, isLoading]
+    const currentUser = users.find(ur => ur?.email === user?.email)
+    
+    return [users, refetch, isLoading, currentUser]
 };
 
 export default useUser;

@@ -1,16 +1,36 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const SocialBtn = () => {
     const { googleLogin } = useContext(AuthContext);
-    
+    const location = useLocation();
+    const path = location?.state?.from?.pathname || '/'; 
+    const navigate = useNavigate();
 
     const googleHandle = () => {
         googleLogin()
             .then(result => {
                 console.log(result.user)
+                const saveUser = {
+                    name: result.user?.displayName,
+                    image: result.user?.photoURL,
+                    email: result.user?.email,
+                    rule: "student"
+                }
+                fetch("http://localhost:4000/users", {
+                    method: 'POST',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(path)
+                    })
             })
             .catch(err => {
                 console.log(err.message)

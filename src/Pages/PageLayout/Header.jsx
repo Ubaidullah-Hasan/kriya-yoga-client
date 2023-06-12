@@ -4,13 +4,14 @@ import logo from "../../assets/logo.png"
 import { FaFacebook, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import userIcon from "../../assets/userIcon.png"
+import useUser from '../../Hook/useUser';
 
 
 const Header = () => {
     // , ,  and User profile picture.The user profile picture and Dashboard on the navbar are conditional.If the user is signed in, the navbar will show the profile picture; otherwise, it will show the Login button.
 
     const { user, logOut} = useContext(AuthContext);
-    const userPhoto = user?.photoURL;
+    const userPhoto = user?.photoURL; 
 
     const handleLogOut = () => {
         logOut()

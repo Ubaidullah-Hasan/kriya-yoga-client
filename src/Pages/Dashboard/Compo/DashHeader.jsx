@@ -14,7 +14,7 @@ const DashHeader = () => {
     const menu = <>
         <li><Link to="/">Home</Link></li>
         {
-            person?.rule === '' &&
+            person?.rule === 'student' &&
             <>
                 <li><Link to="/dashboard/mychoice">My Choice</Link></li>
                 <li><Link to="/dashboard/class">Class</Link></li>

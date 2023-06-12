@@ -17,6 +17,7 @@ import Manageclass from '../Pages/Dashboard/AdminDash/Manageclass';
 import Manageuser from '../Pages/Dashboard/AdminDash/Manageuser';
 import Instructorclass from '../Pages/Dashboard/InstructorDash/Instructorclass';
 import Addclass from '../Pages/Dashboard/InstructorDash/Addclass';
+import AdminRoute from './AdminRoute';
 
 const router = createBrowserRouter([
     {
@@ -63,11 +64,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "manage-class",
-                element: <Manageclass></Manageclass>
+                element: <AdminRoute><Manageclass></Manageclass></AdminRoute>
             },
             {
-                path: "mychoicemanage-user",
-                element: <Manageuser></Manageuser>
+                path: "manage-user",
+                element: <AdminRoute><Manageuser></Manageuser></AdminRoute>
             },
             {
                 path: "addclass",
