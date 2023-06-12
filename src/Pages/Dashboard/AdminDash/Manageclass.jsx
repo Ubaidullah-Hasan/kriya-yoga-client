@@ -7,29 +7,29 @@ const Manageclass = () => {
     const { data: classes = [], refetch, isLoading } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await fetch("http://localhost:4000/classes");
+            const res = await fetch("https://yoga-steel.vercel.app/classes");
             return res.json()
         }
     })
     console.log(classes)
 
     const handleApprove = (item, text) => {
-        const status = {status:text};
+        const status = { status: text };
         console.log(status);
-        fetch(`http://localhost:4000/classes/${item}`, {
+        fetch(`https://yoga-steel.vercel.app/classes/${item}`, {
             method: "PATCH",
             headers: {
-                "content-type" : "application/json"
+                "content-type": "application/json"
             },
             body: JSON.stringify(status)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if (data.modifiedCount){
-                alert("Update Data!!")
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount) {
+                    alert("Update Data!!")
+                }
+            })
     }
 
     return (

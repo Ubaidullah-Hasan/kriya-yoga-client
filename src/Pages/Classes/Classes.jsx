@@ -16,7 +16,7 @@ const Classes = () => {
     const [, , , currentUser] = useUser(); console.log(currentUser?.email)
     const email = currentUser?.email;
     useEffect(() => {
-        axios.get('http://localhost:4000/classes')
+        axios.get('https://yoga-steel.vercel.app/classes')
             .then(response => {
                 // console.log(response.data);
                 setClasses(response.data);
@@ -26,8 +26,8 @@ const Classes = () => {
 
 
     const handleSelect = (item) => {
-        const cource = { email, courseId: item?._id, name: item?.name, instructor: item?.instructor, price: item?.price, availableSeats: item?.availableSeats, totalEnroll: item?.studentsCount, image: item.image, studentsCount: item?.studentsCount};
-        
+        const cource = { email, courseId: item?._id, name: item?.name, instructor: item?.instructor, price: item?.price, availableSeats: item?.availableSeats, totalEnroll: item?.studentsCount, image: item.image, studentsCount: item?.studentsCount };
+
         if (!email) {
             console.log()
             Swal.fire({
@@ -46,7 +46,7 @@ const Classes = () => {
         }
 
         else {
-            axios.post('http://localhost:4000/select-cources', cource, {
+            axios.post('https://yoga-steel.vercel.app/select-cources', cource, {
                 headers: {
                     autorization: `Bearer ${token}`,
                 }

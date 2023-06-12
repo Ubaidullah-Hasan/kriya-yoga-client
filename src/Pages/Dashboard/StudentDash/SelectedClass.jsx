@@ -4,13 +4,13 @@ import useClasses from '../../../Hook/useClasses';
 
 const SelectedClass = () => {
 
-    const [classes, refetch, totalPrice] =useClasses();
+    const [classes, refetch, totalPrice] = useClasses();
 
 
     const handleDelete = (id) => {
         console.log(id)
 
-        fetch(`http://localhost:4000/select-cources/${id}`, {
+        fetch(`https://yoga-steel.vercel.app/select-cources/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())

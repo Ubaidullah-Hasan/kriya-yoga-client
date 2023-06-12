@@ -8,7 +8,7 @@ import { Tooltip } from 'react-tooltip'
 const Instructors = () => {
     const [instructors, setInstructors] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:4000/instructors')
+        axios.get('https://yoga-steel.vercel.app/instructors')
             .then(response => {
                 setInstructors(response.data);
             })

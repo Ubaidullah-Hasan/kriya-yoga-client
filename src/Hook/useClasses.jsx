@@ -4,14 +4,14 @@ import { useQuery } from '@tanstack/react-query';
 
 const useClasses = () => {
     const [, , , currentUser] = useUser()
-    
+
     const token = localStorage.getItem("access-token");
 
 
     const { data: classes = [], refetch } = useQuery({
         queryKey: ['classes', currentUser?.email],
         queryFn: async () => {
-            const response = await fetch(`http://localhost:4000/select-cources/${currentUser?.email}`, {
+            const response = await fetch(`https://yoga-steel.vercel.app/select-cources/${currentUser?.email}`, {
                 headers: {
                     autorization: `bearer ${token}`
                 }

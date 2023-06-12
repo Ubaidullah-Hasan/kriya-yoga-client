@@ -25,11 +25,11 @@ const Addclass = () => {
                 if (imgResponse.success) {
                     const imgURL = imgResponse.data.display_url;
                     const { name, email, instructor, price, availableSeats } = data;
-                    const newItem = { name, price: parseFloat(price), email, instructor, image: imgURL, availableSeats: parseInt(availableSeats), status: "pending", studentsCount: 0};
+                    const newItem = { name, price: parseFloat(price), email, instructor, image: imgURL, availableSeats: parseInt(availableSeats), status: "pending", studentsCount: 0 };
                     console.log(newItem)
                     console.log(data)
 
-                    fetch("http://localhost:4000/classes", {
+                    fetch("https://yoga-steel.vercel.app/classes", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const Addclass = () => {
         <div className="w-[90%] mx-auto md:mt-20 bg-[#F3F3F3] p-[50px] ">
             <div className=" mx-auto w-full   rounded-none">
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    
+
                     <div className='grid grid-cols-2 gap-4'>
                         <div className="form-control">
                             <label className="label">
@@ -93,7 +93,7 @@ const Addclass = () => {
                             <label className="label">
                                 <span className="label-text">Email*</span>
                             </label>
-                            <input type="text" {...register("email", { required: true, maxLength: 180 })} defaultValue={user?.email} readOnly  placeholder="Class name" className="input rounded-none py-6 px-8 border-none focus:outline-none" />
+                            <input type="text" {...register("email", { required: true, maxLength: 180 })} defaultValue={user?.email} readOnly placeholder="Class name" className="input rounded-none py-6 px-8 border-none focus:outline-none" />
                         </div>
                         <div className="form-control">
                             <label className="label">

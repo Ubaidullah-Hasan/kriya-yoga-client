@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const SocialBtn = () => {
     const { googleLogin } = useContext(AuthContext);
     const location = useLocation();
-    const path = location?.state?.from?.pathname || '/'; 
+    const path = location?.state?.from?.pathname || '/';
     const navigate = useNavigate();
 
     const googleHandle = () => {
@@ -20,7 +20,7 @@ const SocialBtn = () => {
                     email: result.user?.email,
                     rule: "student"
                 }
-                fetch("http://localhost:4000/users", {
+                fetch("https://yoga-steel.vercel.app/users", {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"

@@ -23,9 +23,9 @@ const CheckOutForm = ({ classes, totalPrice }) => {
         if (!totalPrice) {
             return
         }
-        axios.post("http://localhost:4000/create-payment-intent", { totalPrice }, {
+        axios.post("https://yoga-steel.vercel.app/create-payment-intent", { totalPrice }, {
             headers: {
-                autorization: `Bearer ${ token }`,
+                autorization: `Bearer ${token}`,
             }
         })
             .then(res => {
@@ -103,7 +103,7 @@ const CheckOutForm = ({ classes, totalPrice }) => {
                 confirmButtonText: 'Cool'
             })
             console.log("payment successfull")
-            axios.post('http://localhost:4000/payment', payment, {
+            axios.post('https://yoga-steel.vercel.app/payment', payment, {
                 headers: {
                     'autorization': `Bearer ${token}`
                 }
@@ -113,7 +113,7 @@ const CheckOutForm = ({ classes, totalPrice }) => {
                 //     if (res.data.result.insertedId) {
                 //         console.log("payment document insert the db")
                 //         classes.map(item => console.log(item.studentsCount, item.studentsCount + 1))
-                //         fetch("http://localhost:4000/classes",{
+                //         fetch("https://yoga-steel.vercel.app/classes",{
                 //             method: "PUT",
                 //             headers: {
                 //                 "content-type" : "application/json"
@@ -133,7 +133,7 @@ const CheckOutForm = ({ classes, totalPrice }) => {
 
                         const updatedClasses = classes.map(item => ({ ...item, studentsCount: parseInt(item.studentsCount) + 1 }));
 
-                        fetch("http://localhost:4000/classes", {
+                        fetch("https://yoga-steel.vercel.app/classes", {
                             method: "PUT",
                             headers: {
                                 "Content-Type": "application/json"
@@ -174,7 +174,7 @@ const CheckOutForm = ({ classes, totalPrice }) => {
                         },
                     }}
                 />
-                  
+
                 <button className='btn btn-primary w-full' type="submit" disabled={!stripe || processing || !clientSecret} >
                     Pay
                 </button>

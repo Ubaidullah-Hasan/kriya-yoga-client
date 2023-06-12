@@ -30,21 +30,21 @@ const Register = () => {
                             email: email,
                             rule: "student"
                         }
-                        fetch("http://localhost:4000/users", {
+                        fetch("https://yoga-steel.vercel.app/users", {
                             method: 'POST',
                             headers: {
-                                "content-type":"application/json"
+                                "content-type": "application/json"
                             },
                             body: JSON.stringify(saveUser)
                         })
-                        .then(res => res.json())
-                        .then(data => {
-                            if(data.insertedId){
-                                reset();
-                                console.log("successfull update")
-                                navigate("/");
-                            }
-                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    console.log("successfull update")
+                                    navigate("/");
+                                }
+                            })
                     })
                     .catch(err => {
                         console.log(err.message);

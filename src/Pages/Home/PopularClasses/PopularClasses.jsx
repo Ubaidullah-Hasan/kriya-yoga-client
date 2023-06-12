@@ -6,11 +6,11 @@ const PopularClasses = () => {
     const { data: classes = [] } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await fetch("http://localhost:4000/classes-img");
+            const res = await fetch("https://yoga-steel.vercel.app/classes-img");
             return res.json()
         }
     })
-    
+
     return (
         <div className='bg-[#F5F0E2] py-10 md:py-24'>
             <div className="w-[80%] md:w-1/2 mx-auto text-center">
@@ -25,7 +25,7 @@ const PopularClasses = () => {
             </div>
             <div className=" mt-12 w-[90%] mx-auto grid grid-cols- md:grid-cols-3 gap-4">
                 {
-                    classes.map(classItem => 
+                    classes.map(classItem =>
                         <div key={classItem._id} className='border-[10px] border-white shadow'>
                             <img src={classItem.image} alt="Popular class Image" />
                         </div>

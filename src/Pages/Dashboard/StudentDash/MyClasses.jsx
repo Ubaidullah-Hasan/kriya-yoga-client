@@ -9,7 +9,7 @@ const MyClasses = () => {
     const [myClasses, setmyClasses] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/payment/${user?.email}`, {
+        axios.get(`https://yoga-steel.vercel.app/payment/${user?.email}`, {
             headers: {
                 autorization: `Bearer ${token}`,
             },
@@ -23,7 +23,7 @@ const MyClasses = () => {
 
     // const [classes, setClasses] = useState([]);
     // useEffect(() => {
-    //     axios.get('http://localhost:4000/classes')
+    //     axios.get('https://yoga-steel.vercel.app/classes')
     //         .then(response => {
     //             // console.log(response.data);
     //             setClasses(response.data);
@@ -45,7 +45,7 @@ const MyClasses = () => {
     //         });
     //     });
 
-        
+
     //     setAllMyClasses(accumulatedClasses);
     // }, [myClasses, classes]);
     // console.log(allMyClasses);
@@ -70,7 +70,7 @@ const MyClasses = () => {
                                 </h2>
                                 <div className="card-actions justify-between">
                                     <div className="">All Item: {classItem.itemsName.map(li => <li key={li._id} className='block'>{li}</li>)}</div>
-                                    
+
                                 </div>
 
                             </div>

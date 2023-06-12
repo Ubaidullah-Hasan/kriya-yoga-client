@@ -9,7 +9,7 @@ const PaymentHistory = () => {
     const [myClasses, setmyClasses] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/payment/${user?.email}`, {
+        axios.get(`https://yoga-steel.vercel.app/payment/${user?.email}`, {
             headers: {
                 autorization: `Bearer ${token}`,
             },

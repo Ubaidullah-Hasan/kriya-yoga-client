@@ -11,7 +11,7 @@ const useAdmin = () => {
         queryKey: ['isAdmin', user?.email],
         enabled: !loading,
         queryFn: async () => {
-            const response = await fetch(`http://localhost:4000/users/admin/${user?.email}`, {
+            const response = await fetch(`https://yoga-steel.vercel.app/users/admin/${user?.email}`, {
                 headers: {
                     autorization: `bearer ${token}`
                 }

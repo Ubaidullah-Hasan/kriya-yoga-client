@@ -4,10 +4,10 @@ import titleImg from "../../../assets/home/img/floral-decor@2x.png"
 
 
 const Instructor = () => {
-    const {data: instructors = []} = useQuery({
+    const { data: instructors = [] } = useQuery({
         queryKey: ['instructors'],
         queryFn: async () => {
-            const res = await fetch("http://localhost:4000/instructors-img")
+            const res = await fetch("https://yoga-steel.vercel.app/instructors-img")
             return res.json()
         }
     })
